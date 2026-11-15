@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10172a">
+<meta name="description" content="Flash Focus - لعبة سرعة وذكاء وتركيز">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<title>Flash Focus | فلاش فوكس</title>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="brand"><span class="mark">✦</span><div><b>FLASH FOCUS</b><small id="tagline">اختبر سرعة عقلك</small></div></div>
+    <button class="lang" id="langBtn" aria-label="Change language">EN</button>
+  </header>
+  <section class="hero" id="home">
+    <div class="eyebrow" id="eyebrow">تحدّي يومي لعقلك</div>
+    <h1 id="headline">فكّر بسرعة.<br><em>ركّز أكثر.</em></h1>
+    <p id="intro">اختبر انتباهك وسرعة استجابتك في جولات قصيرة وممتعة.</p>
+    <div class="stats">
+      <div><strong id="best">0</strong><span id="bestLabel">أفضل نتيجة</span></div>
+      <div><strong>30</strong><span id="timeLabel">ثانية للجولة</span></div>
+      <div><strong>3</strong><span id="modeLabel">أنماط لعب</span></div>
+    </div>
+    <button class="primary" id="startBtn">ابدأ التحدّي <span>↗</span></button>
+    <div class="hint" id="hint">اضغط الإجابة الصحيحة قبل انتهاء الوقت</div>
+  </section>
+  <section class="game hidden" id="game">
+    <div class="gameTop"><span id="roundLabel">الجولة 1</span><span class="timer" id="timer">30</span></div>
+    <div class="progress"><i id="progress"></i></div>
+    <div class="mode" id="mode">سرعة الملاحظة</div>
+    <h2 id="question">أي شكل مختلف؟</h2>
+    <div class="prompt" id="prompt">● ● ▲ ●</div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <button class="quiet" id="quitBtn">إنهاء الجولة</button>
+  </section>
+  <section class="result hidden" id="result">
+    <div class="resultIcon">✦</div>
+    <div class="eyebrow" id="resultEyebrow">انتهى التحدّي</div>
+    <h2 id="resultTitle">أداء رائع!</h2>
+    <div class="score" id="finalScore">0</div>
+    <p id="resultText">نقاطك</p>
+    <div class="resultStats"><div><b id="correct">0</b><span id="correctLabel">إجابات صحيحة</span></div><div><b id="bestResult">0</b><span id="bestResultLabel">أفضل نتيجة</span></div></div>
+    <button class="primary" id="againBtn">العب مرة ثانية <span>↗</span></button>
+    <button class="quiet" id="homeBtn">العودة للرئيسية</button>
+  </section>
+  <footer>FLASH FOCUS <span>•</span> THINK FAST, STAY SHARP</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,1 +1,12 @@
-{"name":"Flash Focus","short_name":"Flash Focus","start_url":"./index.html","display":"standalone","background_color":"#10172a","theme_color":"#10172a","description":"A bilingual speed and focus game","icons":[]}
+{
+  "name": "Flash Focus",
+  "short_name": "Flash Focus",
+  "description": "Arabic and English brain focus game",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c1022",
+  "theme_color": "#10152b",
+  "orientation": "portrait",
+  "icons": []
+}

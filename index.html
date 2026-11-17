@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#10152b">
-  <meta name="description" content="Flash Focus - لعبة ذكاء وسرعة وتركيز">
+  <meta name="description" content="Flash Focus — تحديات الذكاء والذاكرة وسرعة الملاحظة">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <title>Flash Focus</title>
@@ -12,10 +12,13 @@
 <body>
   <main class="app">
     <header class="topbar">
-      <div class="brand"><span class="brand-mark">⚡</span><div><h1>Flash Focus</h1><p data-i18n="tagline">اختبر سرعة تفكيرك وتركيزك</p></div></div>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">⚡</span>
+        <div><h1>Flash Focus</h1><p data-i18n="tagline">اختبر سرعة تفكيرك وتركيزك</p></div>
+      </div>
       <div class="top-actions">
-        <button id="langBtn" class="icon-btn" aria-label="Change language">EN</button>
-        <button id="settingsBtn" class="icon-btn" aria-label="Settings">⚙</button>
+        <button id="langBtn" class="icon-btn" type="button" aria-label="Change language">EN</button>
+        <button id="settingsBtn" class="icon-btn" type="button" aria-label="Settings">⚙</button>
       </div>
     </header>
 
@@ -23,59 +26,72 @@
       <div class="hero">
         <div class="eyebrow" data-i18n="challenge">تحدّي العقل</div>
         <h2 data-i18n="heroTitle">ركّز بسرعة… واربح النجوم!</h2>
-        <p data-i18n="heroDesc">50 مستوى متدرّج، وأربعة اختبارات تقيس انتباهك وذاكرتك.</p>
+        <p data-i18n="heroDesc">تحديات متنوعة تتجدد مع كل مستوى، والوقت هو خصمك.</p>
         <div class="stats-row">
           <div class="stat"><strong id="bestScore">0</strong><span data-i18n="best">أفضل نتيجة</span></div>
           <div class="stat"><strong id="starsTotal">0 / 150</strong><span data-i18n="stars">النجوم</span></div>
           <div class="stat"><strong id="unlockedCount">1 / 50</strong><span data-i18n="levels">المستويات</span></div>
         </div>
-        <button id="continueBtn" class="primary-btn"><span data-i18n="continue">ابدأ اللعب</span><span>➜</span></button>
+        <button id="continueBtn" class="primary-btn" type="button"><span data-i18n="continue">ابدأ اللعب</span><span aria-hidden="true">➜</span></button>
       </div>
       <div class="section-heading"><h3 data-i18n="chooseLevel">اختر المستوى</h3><span data-i18n="progress">تقدّمك محفوظ تلقائياً</span></div>
-      <div id="levelsGrid" class="levels-grid"></div>
-      <footer data-i18n="footer">لعبة مجانية للتسلية وتنشيط الذهن</footer>
+      <div id="levelsGrid" class="levels-grid" aria-label="Levels"></div>
+      <footer data-i18n="footer">لعبة مجانية لتنشيط الذهن</footer>
     </section>
 
     <section id="gameScreen" class="screen hidden">
       <div class="game-head">
-        <button id="backBtn" class="icon-btn">←</button>
-        <div><span class="muted" data-i18n="level">المستوى</span><strong id="levelLabel">1 / 50</strong></div>
-        <div class="timer-wrap"><span>⏱</span><strong id="timer">30</strong></div>
+        <button id="backBtn" class="icon-btn" type="button" aria-label="Back">←</button>
+        <div class="level-meta"><span class="muted" data-i18n="level">المستوى</span><strong id="levelLabel">1 / 50</strong></div>
+        <div class="timer-wrap"><span aria-hidden="true">⏱</span><strong id="timer">60</strong><small data-i18n="seconds">ث</small></div>
       </div>
       <div class="progress-track"><div id="timerBar"></div></div>
+      <div class="live-stats">
+        <span>⭐ <b id="roundScore">0</b></span>
+        <span>🔥 <b id="streakLabel">0</b></span>
+        <span><b id="answeredLabel">0</b> <span data-i18n="answered">إجابة</span></span>
+      </div>
       <div class="game-card">
         <div class="mode-chip" id="modeName">تمييز الأشكال</div>
         <h2 id="question">اضغط على الشكل المختلف</h2>
         <p id="hint" class="hint"></p>
+        <div id="visualArea" class="visual-area" aria-live="polite"></div>
         <div id="playArea" class="play-area"></div>
         <div id="feedback" class="feedback" aria-live="polite"></div>
       </div>
-      <div class="game-foot"><span id="roundLabel">الجولة 1</span><span>⭐ <b id="roundScore">0</b></span></div>
+      <div class="game-foot"><span id="roundLabel">التحدي 1</span><span data-i18n="speedPoints">الأسرع يجمع نقاطاً أكثر</span></div>
     </section>
 
     <section id="resultScreen" class="screen hidden">
       <div class="result-card">
-        <div class="result-icon" id="resultIcon">🏆</div>
+        <div class="result-icon" id="resultIcon" aria-hidden="true">🏆</div>
         <div class="eyebrow" data-i18n="levelComplete">انتهى المستوى</div>
         <h2 id="resultTitle">أحسنت!</h2>
         <p id="resultText"></p>
         <div class="result-stars" id="resultStars">☆☆☆</div>
         <div class="result-score"><strong id="finalScore">0</strong><span data-i18n="points">نقطة</span></div>
+        <div class="result-grid">
+          <div><strong id="correctCount">0</strong><span data-i18n="correctAnswers">صحيحة</span></div>
+          <div><strong id="wrongCount">0</strong><span data-i18n="wrongAnswers">خاطئة</span></div>
+          <div><strong id="accuracy">0%</strong><span data-i18n="accuracy">الدقة</span></div>
+          <div><strong id="bestStreak">0</strong><span data-i18n="bestStreak">أفضل سلسلة</span></div>
+        </div>
         <div class="result-actions">
-          <button id="nextBtn" class="primary-btn" data-i18n="nextLevel">المستوى التالي</button>
-          <button id="replayBtn" class="secondary-btn" data-i18n="replay">إعادة المحاولة</button>
-          <button id="homeBtn" class="text-btn" data-i18n="home">الرئيسية</button>
+          <button id="nextBtn" class="primary-btn" type="button" data-i18n="nextLevel">المستوى التالي</button>
+          <button id="replayBtn" class="secondary-btn" type="button" data-i18n="replay">إعادة المحاولة</button>
+          <button id="homeBtn" class="text-btn" type="button" data-i18n="home">الرئيسية</button>
         </div>
       </div>
     </section>
 
     <dialog id="settingsDialog">
-      <div class="dialog-head"><h3 data-i18n="settings">الإعدادات</h3><button id="closeSettings" class="icon-btn">✕</button></div>
+      <div class="dialog-head"><h3 data-i18n="settings">الإعدادات</h3><button id="closeSettings" class="icon-btn" type="button" aria-label="Close">✕</button></div>
       <label class="setting-line"><span data-i18n="sound">الصوت</span><input id="soundToggle" type="checkbox" checked></label>
-      <button id="testSoundBtn" class="secondary-btn test-btn" data-i18n="testSound">اختبار الصوت</button>
+      <button id="testSoundBtn" class="secondary-btn test-btn" type="button" data-i18n="testSound">اختبار الصوت</button>
       <label class="setting-line"><span data-i18n="vibration">الاهتزاز</span><input id="vibrationToggle" type="checkbox" checked></label>
-      <button id="testVibrationBtn" class="secondary-btn test-btn" data-i18n="testVibration">اختبار الاهتزاز</button>
-      <button id="resetBtn" class="reset-btn" data-i18n="reset">إعادة ضبط التقدم</button>
+      <button id="testVibrationBtn" class="secondary-btn test-btn" type="button" data-i18n="testVibration">اختبار الاهتزاز</button>
+      <p class="small-note" data-i18n="deviceNote">قد يعتمد الصوت والاهتزاز على إعدادات الجهاز ودعم المتصفح.</p>
+      <button id="resetBtn" class="reset-btn" type="button" data-i18n="reset">إعادة ضبط التقدم</button>
       <p class="small-note" data-i18n="resetNote">سيتم حذف أفضل نتيجة والنجوم والمستويات المفتوحة.</p>
     </dialog>
   </main>
